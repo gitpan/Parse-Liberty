@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 'import';
-our $VERSION    = 0.1;
+our $VERSION    = 0.11;
 
 use liberty;
 use Parse::Liberty::Constants qw($e $e2 %errors %value_types);

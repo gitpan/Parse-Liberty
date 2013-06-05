@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 'import';
-our $VERSION    = 0.1;
+our $VERSION    = 0.11;
 our @EXPORT     = qw();
 our @EXPORT_OK  = qw($e $e2 %errors %attribute_types %value_types);
 

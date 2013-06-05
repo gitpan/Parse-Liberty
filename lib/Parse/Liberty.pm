@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 'import';
-our $VERSION    = 0.1;
+our $VERSION    = 0.11;
 
 use liberty;
 use Parse::Liberty::Constants qw($e $e2 %errors);
@@ -141,6 +141,68 @@ Liberty format is widely used standard for keeping various information for EDA a
 Parse::Liberty build on top Perl-C SWIG interface to Open Source Liberty liberty_parse functions.
 
 To use Parse::Liberty, we need to build liberty_parse package from Open Source Liberty (links in L<"SEE ALSO"> section).
+
+=head2 Liberty format
+
+Every Liberty file consists of comments, empty lines, groups, attributes and defines.
+
+Each group can contain comments, empty lines, attributes and other groups.
+
+There is the root group called 'library', which contains library-level attributes, cell groups
+and library-wide groups such operating conditions, voltages, and table templates.
+
+=over
+
+=item Comment syntax
+
+    /* ... */
+
+=item Group syntax
+
+    type(name) {
+        ...
+    }
+
+or with multiple names (for ex. 'ff(IQ,IQN)' groups in flip-flop cells)
+
+    type(name1 [, name2, ...]) {
+        ...
+    }
+
+Common types is 'cell' for 'library' group and 'pin' in 'cell'-type groups.
+
+A new, non-predefined group can be created with 'define_group' statement (see below).
+
+=item Attribute syntax
+
+Simple attribute:
+
+    name : value ;
+
+Complex attribute:
+
+    name(value1 [, value2, ...]) ;
+
+Attribute value can be one of several types (see L<"Value types">).
+
+Example of complex attribute is 'values()' table, where each value represent one row and
+looks like comma-separated "string".
+
+A new, non-predefined attribute can be created with 'define' statement (see below).
+
+=item Define syntax
+
+New group:
+
+    define_group (name, allowed_group_name);
+
+New attribute:
+
+    define (name, allowed_group_name, type);
+
+Can be used to create new groups and attributes. Type is one of the L<"Value types">.
+
+=back
 
 =head2 Common properties
 

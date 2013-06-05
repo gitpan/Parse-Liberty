@@ -1,5 +1,5 @@
-Parse-Liberty version 0.1
-=========================
+Parse-Liberty version 0.11
+==========================
 
 Parse::Liberty may be used to extract and modify information from Synopsys Liberty files.
 Liberty format is widely used standard for keeping various information for EDA applications.
